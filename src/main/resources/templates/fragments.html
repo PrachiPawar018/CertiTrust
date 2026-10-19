@@ -13,9 +13,13 @@
 </header>
 
 <footer class="site-footer" th:fragment="siteFooter">
-    <a class="footer-brand" th:href="@{/}">CertiTrust</a>
-    <p>Student project demonstration. Not a legally accredited or cryptographically signed credential.</p>
-    <span>ESDL MINI PROJECT</span>
+    <div class="footer-inner">
+        <span class="footer-mark" aria-hidden="true">CT</span>
+        <div class="footer-project">
+            <strong>CertiTrust — Certificate Verification System</strong>
+            <p>ESDL Mini Project • Academic Year 2026–27</p>
+        </div>
+    </div>
 </footer>
 </body>
 </html>

@@ -142,10 +142,32 @@ a { color: inherit; }
 .principle h3 { margin: 0; font-size: 14px; font-weight: 700; }
 .principle p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
 
-.site-footer { min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: 22px; margin-top: auto; border-top: 1px solid var(--line); }
-.footer-brand { font-family: Georgia, serif; font-size: 17px; text-decoration: none; }
-.site-footer p { max-width: 520px; margin: 0; color: var(--muted); font-size: 10px; text-align: center; }
-.site-footer > span { color: var(--teal-dark); font-size: 9px; font-weight: 700; white-space: nowrap; }
+.site-footer {
+    min-height: 104px;
+    display: flex;
+    align-items: center;
+    width: 100vw;
+    margin: auto 0 0 calc(50% - 50vw);
+    padding: 20px 24px;
+    border-top: 3px solid var(--teal);
+    color: var(--white);
+    background: var(--ink);
+}
+.footer-inner { width: min(1080px, 100%); display: flex; align-items: center; gap: 15px; margin: 0 auto; }
+.footer-mark {
+    width: 40px;
+    height: 40px;
+    flex: 0 0 40px;
+    display: grid;
+    place-items: center;
+    border: 1px solid #6cb8ac;
+    color: #a6ddd3;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-weight: 700;
+}
+.footer-project strong { color: var(--white); font-family: Georgia, "Times New Roman", serif; font-size: 15px; font-weight: 400; }
+.footer-project p { margin: 4px 0 0; color: #c5d4d3; font-size: 11px; }
 
 .verify-main { width: min(760px, 100%); flex: 1; align-self: center; padding: 70px 0 78px; }
 .verify-intro { max-width: 620px; }
@@ -226,8 +248,11 @@ a { color: inherit; }
     .principles { gap: 26px; padding: 48px 0 58px; }
     .section-heading h2 { font-size: 27px; }
     .principle { grid-template-columns: 34px 1fr; gap: 10px; }
-    .site-footer { min-height: 110px; flex-wrap: wrap; justify-content: space-between; gap: 7px 12px; padding: 16px 0; }
-    .site-footer p { order: 3; width: 100%; text-align: left; }
+    .site-footer { min-height: 98px; padding: 18px 16px; }
+    .footer-inner { align-items: flex-start; gap: 12px; }
+    .footer-mark { width: 34px; height: 34px; flex-basis: 34px; font-size: 11px; }
+    .footer-project strong { font-size: 13px; }
+    .footer-project p { font-size: 10px; }
     .verify-main { padding: 52px 0 60px; }
     .verify-workspace { margin-top: 27px; padding: 23px 17px 20px; }
     .workspace-topline { font-size: 8px; }
