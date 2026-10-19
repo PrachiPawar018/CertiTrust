@@ -11,15 +11,15 @@
 <div class="page-shell page-shell-short">
     <div th:replace="~{fragments :: siteHeader('verify')}"></div>
 
-    <main class="verify-main">
-        <div class="verify-intro">
-            <p class="eyebrow"><span class="eyebrow-rule"></span> PUBLIC VERIFICATION</p>
-            <h1>Check a certificate<br><span>by its unique ID.</span></h1>
-            <p>Enter the ID printed on the certificate. The verification result will show the record status and its public details.</p>
+    <main class="lookup-page verify-main">
+        <div class="page-intro verify-intro">
+            <p class="eyebrow"><span class="eyebrow-rule"></span> CERTITRUST / PUBLIC REGISTER</p>
+            <h1>Certificate lookup<span>.</span></h1>
+            <p>Enter the ID printed on the certificate. The result shows the stored record and its current status.</p>
         </div>
 
         <section class="verify-workspace" aria-labelledby="lookup-heading">
-            <div class="workspace-topline"><span>RECORD LOOKUP</span><span>NO SIGN-IN REQUIRED</span></div>
+            <div class="workspace-topline"><span>RECORD LOOKUP</span><span>PUBLIC ACCESS</span></div>
             <h2 id="lookup-heading">Certificate ID</h2>
             <form class="lookup-form" th:action="@{/verify}" method="get">
                 <label for="certificate-id">Enter the certificate reference</label>

@@ -41,7 +41,7 @@ class CertiTrustApplicationTests {
 		mockMvc.perform(get("/"))
 				.andExpect(status().isOk())
 				.andExpect(view().name("home"))
-				.andExpect(content().string(containsString("Verify a certificate")));
+				.andExpect(content().string(containsString("Enter the certificate reference")));
 	}
 
 	@Test

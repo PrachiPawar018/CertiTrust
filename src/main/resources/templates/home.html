@@ -11,56 +11,33 @@
 <div class="page-shell">
     <div th:replace="~{fragments :: siteHeader('home')}"></div>
 
-    <main>
-        <section class="hero">
-            <div class="hero-copy">
-                <p class="eyebrow"><span class="eyebrow-rule"></span> ONLINE CERTIFICATE VERIFICATION</p>
-                <h1>Credentials,<br><span>with a clear trail.</span></h1>
-                <p class="hero-description">Look up a certificate by its unique ID and check the status recorded by its issuing organization.</p>
-                <a class="text-link" th:href="@{/verify}">Explore certificate lookup <span aria-hidden="true">&#8594;</span></a>
-            </div>
-
-            <div class="lookup-panel">
-                <div class="panel-heading">
-                    <div>
-                        <p class="eyebrow">PUBLIC RECORD SEARCH</p>
-                        <h2>Verify a certificate</h2>
-                    </div>
-                    <span class="panel-index" aria-hidden="true">01</span>
-                </div>
-                <p class="panel-description">Enter the certificate ID exactly as it appears on the record.</p>
-                <form class="lookup-form" th:action="@{/verify}" method="get">
-                    <label for="certificate-id-home">Certificate ID</label>
-                    <div class="input-row">
-                        <input id="certificate-id-home" name="certificateId" type="text" maxlength="80"
-                               placeholder="e.g. CT-2026-AB12CD" autocomplete="off" required>
-                        <button class="button button-primary" type="submit">Verify <span aria-hidden="true">&#8594;</span></button>
-                    </div>
-                </form>
-                <div class="panel-footnote"><span class="status-dot" aria-hidden="true"></span> Lookup is available without an account</div>
-            </div>
-            <div class="hero-index" aria-hidden="true">01 / 03 <span></span> RECORDS YOU CAN CHECK</div>
+    <main class="lookup-page">
+        <section class="page-intro">
+            <p class="eyebrow"><span class="eyebrow-rule"></span> CERTITRUST / PUBLIC REGISTER</p>
+            <h1>Check a certificate<span>.</span></h1>
+            <p>Search by the unique ID printed on the certificate to see its current record and status.</p>
         </section>
 
-        <section class="principles" aria-labelledby="principles-heading">
-            <div class="section-heading">
-                <p class="eyebrow">A MORE LEGIBLE RECORD</p>
-                <h2 id="principles-heading">Every certificate has a story.<br>Make it easy to confirm.</h2>
+        <section class="lookup-panel" aria-labelledby="lookup-heading">
+            <div class="panel-heading">
+                <h2 id="lookup-heading">Certificate ID</h2>
+                <span class="access-label"><span class="status-dot" aria-hidden="true"></span> Public lookup</span>
             </div>
-            <div class="principle-list">
-                <article class="principle">
-                    <span class="principle-number">01</span>
-                    <div><h3>One unique reference</h3><p>Each issued record is identified by its own certificate ID.</p></div>
-                </article>
-                <article class="principle">
-                    <span class="principle-number">02</span>
-                    <div><h3>A record with context</h3><p>Review the recipient, course, issuer and issue date together.</p></div>
-                </article>
-                <article class="principle">
-                    <span class="principle-number">03</span>
-                    <div><h3>Status stays visible</h3><p>Issued and revoked records have distinct verification outcomes.</p></div>
-                </article>
-            </div>
+            <form class="lookup-form" th:action="@{/verify}" method="get">
+                <label for="certificate-id-home">Enter the certificate reference</label>
+                <div class="input-row">
+                    <input id="certificate-id-home" name="certificateId" type="text" maxlength="80"
+                           placeholder="e.g. CT-2026-AB12CD" autocomplete="off" required>
+                    <button class="button button-primary" type="submit">Verify <span aria-hidden="true">&#8594;</span></button>
+                </div>
+            </form>
+            <p class="panel-footnote">No account is needed. Results reflect the stored certificate record.</p>
+        </section>
+
+        <section class="registry-facts" aria-label="Verification details">
+            <div><span>01</span><p>One certificate ID</p></div>
+            <div><span>02</span><p>Record checked against the database</p></div>
+            <div><span>03</span><p>Current status shown clearly</p></div>
         </section>
     </main>
 
