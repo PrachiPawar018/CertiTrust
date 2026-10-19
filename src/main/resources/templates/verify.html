@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#102d3b">
+    <title>Verify a certificate | CertiTrust</title>
+    <link rel="stylesheet" th:href="@{/css/site.css}">
+</head>
+<body>
+<div class="page-shell page-shell-short">
+    <div th:replace="~{fragments :: siteHeader('verify')}"></div>
+
+    <main class="verify-main">
+        <div class="verify-intro">
+            <p class="eyebrow"><span class="eyebrow-rule"></span> PUBLIC VERIFICATION</p>
+            <h1>Check a certificate<br><span>by its unique ID.</span></h1>
+            <p>Enter the ID printed on the certificate. The verification result will show the record status and its public details.</p>
+        </div>
+
+        <section class="verify-workspace" aria-labelledby="lookup-heading">
+            <div class="workspace-topline"><span>RECORD LOOKUP</span><span>NO SIGN-IN REQUIRED</span></div>
+            <h2 id="lookup-heading">Certificate ID</h2>
+            <form class="lookup-form" th:action="@{/verify}" method="get">
+                <label for="certificate-id">Enter the certificate reference</label>
+                <div class="input-row">
+                    <input id="certificate-id" name="certificateId" type="text" maxlength="80"
+                           th:value="${certificateId}" placeholder="e.g. CT-2026-AB12CD" autocomplete="off" required autofocus>
+                    <button class="button button-primary" type="submit">Check record <span aria-hidden="true">&#8594;</span></button>
+                </div>
+            </form>
+            <div class="lookup-note"><span class="note-mark" aria-hidden="true">i</span><p>Certificate details are displayed only when a matching record is found.</p></div>
+        </section>
+
+        <p class="project-notice">CertiTrust is a student project demonstration, not a legally accredited or cryptographically signed credential.</p>
+    </main>
+
+    <div th:replace="~{fragments :: siteFooter}"></div>
+</div>
+</body>
+</html>

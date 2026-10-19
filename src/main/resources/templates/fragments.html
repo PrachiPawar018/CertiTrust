@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<header class="site-header" th:fragment="siteHeader(activeTab)">
+    <a class="brand" th:href="@{/}" aria-label="CertiTrust home">
+        <span class="brand-mark" aria-hidden="true">CT</span>
+        <span class="brand-name">CertiTrust<span class="brand-caption">CREDENTIAL RECORDS</span></span>
+    </a>
+    <nav class="site-nav" aria-label="Main navigation">
+        <a th:href="@{/}" th:classappend="${activeTab == 'home'} ? ' is-active' : ''">Home</a>
+        <a th:href="@{/verify}" th:classappend="${activeTab == 'verify'} ? ' is-active' : ''">Verify certificate</a>
+    </nav>
+</header>
+
+<footer class="site-footer" th:fragment="siteFooter">
+    <a class="footer-brand" th:href="@{/}">CertiTrust</a>
+    <p>Student project demonstration. Not a legally accredited or cryptographically signed credential.</p>
+    <span>ESDL MINI PROJECT</span>
+</footer>
+</body>
+</html>
