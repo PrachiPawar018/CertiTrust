@@ -29,6 +29,37 @@
                     <button class="button button-primary" type="submit">Check record <span aria-hidden="true">&#8594;</span></button>
                 </div>
             </form>
+            <section class="verification-result result-record"
+                     th:if="${verificationOutcome == 'VALID' or verificationOutcome == 'REVOKED'}"
+                     th:classappend="${verificationOutcome == 'VALID'} ? ' result-valid' : ' result-revoked'"
+                     aria-live="polite">
+                <p class="result-kicker" th:text="${verificationOutcome == 'VALID'} ? 'VERIFICATION SUCCESSFUL' : 'VERIFICATION WARNING'">VERIFICATION RESULT</p>
+                <h3 th:text="${verificationOutcome == 'VALID'} ? 'Certificate is valid' : 'Certificate has been revoked'">Verification result</h3>
+                <p class="result-message" th:text="${verificationOutcome == 'VALID'}
+                    ? 'This certificate matches a record and is currently marked valid.'
+                    : 'This certificate record exists, but its status is revoked.'">Certificate status</p>
+                <dl class="certificate-details">
+                    <div><dt>Certificate ID</dt><dd th:text="${certificate.certificateId}">Certificate ID</dd></div>
+                    <div><dt>Recipient</dt><dd th:text="${certificate.recipientName}">Recipient</dd></div>
+                    <div><dt>Course</dt><dd th:text="${certificate.courseName}">Course</dd></div>
+                    <div><dt>Issuing organization</dt><dd th:text="${certificate.issuingOrganization}">Issuer</dd></div>
+                    <div><dt>Issue date</dt><dd th:text="${certificate.issueDate}">Date</dd></div>
+                    <div th:if="${certificate.description != null and !certificate.description.isBlank()}">
+                        <dt>Description</dt><dd th:text="${certificate.description}">Description</dd>
+                    </div>
+                    <div><dt>Current status</dt><dd><span class="result-status" th:text="${certificate.status}">Status</span></dd></div>
+                </dl>
+            </section>
+            <section class="verification-result result-not-found" th:if="${verificationOutcome == 'NOT_FOUND'}" aria-live="polite">
+                <p class="result-kicker">NO MATCHING RECORD</p>
+                <h3>Certificate not found</h3>
+                <p class="result-message">No certificate matches the ID <strong th:text="${certificateId}">entered ID</strong>.</p>
+            </section>
+            <section class="verification-result result-empty" th:if="${verificationOutcome == 'EMPTY'}" aria-live="polite">
+                <p class="result-kicker">ID REQUIRED</p>
+                <h3>Enter a certificate ID</h3>
+                <p class="result-message">The ID cannot be blank or contain only spaces.</p>
+            </section>
             <div class="lookup-note"><span class="note-mark" aria-hidden="true">i</span><p>Certificate details are displayed only when a matching record is found.</p></div>
         </section>
 
