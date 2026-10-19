@@ -1,19 +1,26 @@
 package com.certitrust;
 
+import java.time.LocalDate;
+import java.util.Optional;
+
 import static org.hamcrest.Matchers.containsString;
-import com.certitrust.entity.Certificate;
-import com.certitrust.entity.CertificateStatus;
-import com.certitrust.repository.CertificateRepository;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.webmvc.test.autoconfigure.AutoConfigureMockMvc;
 import org.springframework.test.web.servlet.MockMvc;
-import java.time.LocalDate;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
+
+import com.certitrust.entity.Certificate;
+import com.certitrust.entity.CertificateStatus;
+import com.certitrust.repository.CertificateRepository;
+import com.certitrust.service.CertificateVerificationService;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -78,6 +85,18 @@ class CertiTrustApplicationTests {
 		mockMvc.perform(get("/verify").param("certificateId", "   "))
 				.andExpect(status().isOk())
 				.andExpect(content().string(containsString("The ID cannot be blank")));
+	}
+
+	@Test
+	void verificationRequiresExactIdCaseEvenWithCaseInsensitiveDatabaseMatch() {
+		CertificateRepository repository = mock(CertificateRepository.class);
+		Certificate storedCertificate = new Certificate("CT-2026-0001", "Test Recipient", "Test Course",
+				"Test Organization", LocalDate.of(2026, 1, 15), null, CertificateStatus.VALID);
+		when(repository.findByCertificateId("ct-2026-0001")).thenReturn(Optional.of(storedCertificate));
+
+		CertificateVerificationService service = new CertificateVerificationService(repository);
+
+		assertTrue(service.findByCertificateId("ct-2026-0001").isEmpty());
 	}
 
 }

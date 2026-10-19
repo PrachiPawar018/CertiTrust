@@ -1,9 +1,11 @@
 package com.certitrust.service;
 
+import java.util.Optional;
+
+import org.springframework.stereotype.Service;
+
 import com.certitrust.entity.Certificate;
 import com.certitrust.repository.CertificateRepository;
-import java.util.Optional;
-import org.springframework.stereotype.Service;
 
 @Service
 public class CertificateVerificationService {
@@ -18,6 +20,8 @@ public class CertificateVerificationService {
         if (certificateId == null || certificateId.isBlank()) {
             return Optional.empty();
         }
-        return certificateRepository.findByCertificateId(certificateId.trim());
+        String normalizedId = certificateId.trim();
+        return certificateRepository.findByCertificateId(normalizedId)
+            .filter(certificate -> normalizedId.equals(certificate.getCertificateId()));
     }
 }

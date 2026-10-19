@@ -1,8 +1,10 @@
 package com.certitrust.repository;
 
-import com.certitrust.entity.Certificate;
 import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.certitrust.entity.Certificate;
 
 public interface CertificateRepository extends JpaRepository<Certificate, Long> {
 

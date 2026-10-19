@@ -1,12 +1,14 @@
 package com.certitrust.controller;
 
-import com.certitrust.entity.Certificate;
-import com.certitrust.service.CertificateVerificationService;
 import java.util.Optional;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import com.certitrust.entity.Certificate;
+import com.certitrust.service.CertificateVerificationService;
 
 @Controller
 public class CertificateVerificationController {
