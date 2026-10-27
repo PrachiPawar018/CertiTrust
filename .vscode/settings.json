@@ -1,0 +1,6 @@
+{
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "code-runner.executorMap": {
+        "java": "cd $workspaceRoot && .\\mvnw.cmd spring-boot:run"
+    }
+}
